@@ -2,7 +2,7 @@ import React, {
   useEffect, useMemo, useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useSearchParams } from 'react-router-dom';
 import { getConfig } from '@edx/frontend-platform';
 import { sendPageEvent, sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { useIntl } from '@edx/frontend-platform/i18n';
@@ -91,6 +91,11 @@ const RegistrationPage = (props) => {
   const tpaHint = useMemo(() => getTpaHint(), []);
 
   const [formFields, setFormFields] = useState({ ...backedUpFormData.formFields });
+  const [searchParams] =  useSearchParams({ ["email"]: '' });
+  const defaultEmail = searchParams.get('email');
+  setFormFields(prevState => ({
+    ...prevState, email:defaultEmail,
+  }));
   const [configurableFormFields, setConfigurableFormFields] = useState({ ...backedUpFormData.configurableFormFields });
   const [errors, setErrors] = useState({ ...backedUpFormData.errors });
   const [errorCode, setErrorCode] = useState({ type: '', count: 0 });
