@@ -1,3 +1,7 @@
 .login-button-width {
     min-width: 6rem;
+    @include media-breakpoint-down('xl') {
+      
+        min-width: 100%;
+      }
 }

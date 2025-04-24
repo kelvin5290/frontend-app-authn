@@ -105,10 +105,10 @@ const ForgotPasswordPage = (props) => {
         <Tabs activeKey="" id="controlled-tab" onSelect={(key) => navigate(updatePathWithQueryParams(key))}>
           <Tab title={tabTitle} eventKey={LOGIN_PAGE} />
         </Tabs>
-        <div id="main-content" className="main-content">
+        <div id="main-content" >
           <Form id="forget-password-form" name="forget-password-form" className="mw-xs">
             <ForgotPasswordAlert email={bannerEmail} emailError={formErrors} status={status} />
-            <h2 className="h4">
+            <h2 className="h4 mt-3 mb-3">
               {formatMessage(messages['forgot.password.page.heading'])}
             </h2>
             <p className="mb-4">
@@ -139,7 +139,7 @@ const ForgotPasswordPage = (props) => {
               onClick={handleSubmit}
               onMouseDown={(e) => e.preventDefault()}
             />
-            {(getConfig().LOGIN_ISSUE_SUPPORT_LINK) && (
+            {/* {(getConfig().LOGIN_ISSUE_SUPPORT_LINK) && (
               <Hyperlink
                 id="forgot-password"
                 name="forgot-password"
@@ -150,7 +150,7 @@ const ForgotPasswordPage = (props) => {
               >
                 {formatMessage(messages['need.help.sign.in.text'])}
               </Hyperlink>
-            )}
+            )} */}
             <p className="mt-5.5 small text-gray-700">
               {formatMessage(messages['additional.help.text'], { platformName })}
               <span>

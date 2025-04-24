@@ -8,7 +8,12 @@ const messages = defineMessages({
   },
   'with.site.name': {
     id: 'with.site.name',
-    defaultMessage: 'with {siteName}',
+    defaultMessage: 'with',
+    description: 'Header text with site name for logistration MFE pages',
+  },
+  'site.name': {
+    id: 'site.name',
+    defaultMessage: '{siteName}',
     description: 'Header text with site name for logistration MFE pages',
   },
 });

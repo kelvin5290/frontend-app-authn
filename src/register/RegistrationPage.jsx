@@ -93,9 +93,6 @@ const RegistrationPage = (props) => {
   const [formFields, setFormFields] = useState({ ...backedUpFormData.formFields });
   const [searchParams] =  useSearchParams({ ["email"]: '' });
   const defaultEmail = searchParams.get('email');
-  setFormFields(prevState => ({
-    ...prevState, email:defaultEmail,
-  }));
   const [configurableFormFields, setConfigurableFormFields] = useState({ ...backedUpFormData.configurableFormFields });
   const [errors, setErrors] = useState({ ...backedUpFormData.errors });
   const [errorCode, setErrorCode] = useState({ type: '', count: 0 });
@@ -111,6 +108,13 @@ const RegistrationPage = (props) => {
   /**
    * Set the userPipelineDetails data in formFields for only first time
    */
+  useEffect(() => {
+    if(defaultEmail){
+      setFormFields(prevState => ({
+        ...prevState, email:defaultEmail
+      }));
+    }
+  },[defaultEmail])
   useEffect(() => {
     if (!userPipelineDataLoaded && thirdPartyAuthApiStatus === COMPLETE_STATE) {
       if (thirdPartyAuthErrorMessage) {
@@ -299,7 +303,7 @@ const RegistrationPage = (props) => {
           <div
             className={classNames(
               'mw-xs mt-3',
-              { 'w-100 m-auto pt-4 main-content': registrationEmbedded },
+              { 'w-100 m-auto pt-4': registrationEmbedded },
             )}
           >
             <ThirdPartyAuthAlert
@@ -324,6 +328,7 @@ const RegistrationPage = (props) => {
                 floatingLabel={formatMessage(messages['registration.fullname.label'])}
               />
               <EmailField
+                readOnly
                 name="email"
                 value={formFields.email}
                 confirmEmailValue={configurableFormFields?.confirm_email}

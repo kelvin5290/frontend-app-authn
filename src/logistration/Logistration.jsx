@@ -99,45 +99,13 @@ const Logistration = (props) => {
   return (
     <BaseContainer>
       <div>
-        {disablePublicAccountCreation
-          ? (
-            <>
-              {institutionLogin && (
-                <Tabs defaultActiveKey="" id="controlled-tab" onSelect={handleInstitutionLogin}>
-                  <Tab title={tabTitle} eventKey={LOGIN_PAGE} />
-                </Tabs>
-              )}
-              <div id="main-content" className="main-content">
-                {!institutionLogin && (
-                  <h3 className="mb-4.5">{formatMessage(messages['logistration.sign.in'])}</h3>
-                )}
-                <LoginPage institutionLogin={institutionLogin} handleInstitutionLogin={handleInstitutionLogin} />
-              </div>
-            </>
-          )
-          : (
-            <div>
-              {institutionLogin
-                ? (
-                  <Tabs defaultActiveKey="" id="controlled-tab" onSelect={handleInstitutionLogin}>
-                    <Tab title={tabTitle} eventKey={selectedPage === LOGIN_PAGE ? LOGIN_PAGE : REGISTER_PAGE} />
-                  </Tabs>
-                )
-                : (!isValidTpaHint() && !hideRegistrationLink && (
-                  <Tabs defaultActiveKey={selectedPage} id="controlled-tab" onSelect={(tabKey) => handleOnSelect(tabKey, selectedPage)}>
-                    <Tab title={formatMessage(messages['logistration.register'])} eventKey={REGISTER_PAGE} />
-                    <Tab title={formatMessage(messages['logistration.sign.in'])} eventKey={LOGIN_PAGE} />
-                  </Tabs>
-                ))}
-              { key && (
-                <Navigate to={updatePathWithQueryParams(key)} replace />
-              )}
-              <div id="main-content" className="main-content">
-                {!institutionLogin && !isValidTpaHint() && hideRegistrationLink && (
-                  <h3 className="mb-4.5">
+
+              <div id="main-content" >
+               
+                  <h2 className="mb-4.5" style={{color:"#38AA95"}}>
                     {formatMessage(messages[selectedPage === LOGIN_PAGE ? 'logistration.sign.in' : 'logistration.register'])}
-                  </h3>
-                )}
+                  </h2>
+                
                 {selectedPage === LOGIN_PAGE
                   ? <LoginPage institutionLogin={institutionLogin} handleInstitutionLogin={handleInstitutionLogin} />
                   : (
@@ -147,8 +115,8 @@ const Logistration = (props) => {
                     />
                   )}
               </div>
-            </div>
-          )}
+     
+         
       </div>
     </BaseContainer>
   );

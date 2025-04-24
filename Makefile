@@ -30,15 +30,15 @@ detect_changed_source_translations:
 	git diff --exit-code $(i18n)
 
 pull_translations:
-	rm -rf src/i18n/messages
-	mkdir src/i18n/messages
-	cd src/i18n/messages \
-	  && atlas pull --filter=zh_CN,zh_hk,zh_tw\
-	           translations/paragon/src/i18n/messages:paragon \
-	           translations/frontend-platform/src/i18n/messages:frontend-platform \
-	           translations/frontend-app-authn/src/i18n/messages:frontend-app-authn
+	 rm -rf src/i18n/messages
+	 mkdir src/i18n/messages
+	 cd src/i18n/messages \
+	   && atlas pull $(ATLAS_OPTIONS)\
+	            translations/paragon/src/i18n/messages:paragon \
+	            translations/frontend-platform/src/i18n/messages:frontend-platform \
+	            translations/frontend-app-authn/src/i18n/messages:frontend-app-authn
 
-	$(intl_imports) paragon frontend-platform frontend-app-authn
+	 $(intl_imports) paragon frontend-platform frontend-app-authn
 
 # This target is used by Travis.
 validate-no-uncommitted-package-lock-changes:

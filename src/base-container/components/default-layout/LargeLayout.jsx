@@ -1,42 +1,57 @@
-import React from 'react';
+import React from "react";
 
-import { getConfig } from '@edx/frontend-platform';
-import { useIntl } from '@edx/frontend-platform/i18n';
-import { Hyperlink, Image } from '@openedx/paragon';
-import classNames from 'classnames';
+import { getConfig } from "@edx/frontend-platform";
+import { useIntl } from "@edx/frontend-platform/i18n";
+import { Hyperlink, Image } from "@openedx/paragon";
+import classNames from "classnames";
 
-import messages from './messages';
+import bg from "../../../assets/bg.jpg";
+import logo from "../../../assets/logo.svg";
 
-const LargeLayout = () => {
+import messages from "./messages";
+
+const LargeLayout = ({ children }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="w-50 d-flex">
-      <div className="col-md-9 bg-primary-400">
-        <Hyperlink destination={getConfig().MARKETING_SITE_BASE_URL}>
-          <Image className="logo position-absolute" alt={getConfig().SITE_NAME} src={getConfig().LOGO_WHITE_URL} />
-        </Hyperlink>
-        <div className="min-vh-100 d-flex align-items-center">
-          <div className={classNames({ 'large-yellow-line mr-n4.5': getConfig().SITE_NAME === 'edX' })} />
-          <h1
-            className={classNames(
-              'display-2 text-white mw-xs',
-              { 'ml-6': getConfig().SITE_NAME !== 'edX' },
-            )}
-          >
-            {formatMessage(messages['start.learning'])}
-            <div className="text-accent-a">
-              {formatMessage(messages['with.site.name'], { siteName: getConfig().SITE_NAME })}
-            </div>
-          </h1>
+    // style={{display: "flex",alignItems: "center" ,height: "100vh" ,justifyContent: "center"}}
+
+    <div
+      className="min-vh-100 d-flex align-items-center justify-content-center"
+      style={{ backgroundColor: "#F6F6F4" }}
+    >
+      <div className=" mb-5 bg-white d-flex flex-column align-items-center " style = {{borderRadius: '1rem', boxShadow:'rgba(0 0 0 / 41%) -10px 0.5rem 2rem 0px'}}>
+        <div
+          className="d-flex  flex-row"
+          style={{
+           
+          }}
+        >
+          <div style={{ borderRadius: '1rem 0rem 0rem 1rem', backgroundImage: `url(${bg})`,minWidth:"50vh",
+              backgroundPosition: "left",
+             
+              backgroundRepeat: "no-repeat",}}>
+            {/* <img src={bg} class="card-img w-25" alt="..." /> */}
+            {/* <div class="card-img-overlay"> */}
+            <Hyperlink destination={getConfig().MARKETING_SITE_BASE_URL}>
+              <Image
+                className="w-75"
+                alt={getConfig().SITE_NAME}
+                src={logo}
+              />
+            </Hyperlink>
+
+            <h1 className=" text-white mt-3 ml-5 mr-6 mb-5" style={{fontSize:" 2.5rem"}}>
+              <div className="text-white">Level Up on</div>
+              <div className="text-white">Cybersecurity</div>
+            </h1>
+            {/* </div> */}
+          </div>
+          <div className="pl-5 pr-5 pt-6 pb-5" style={{
+            
+            width: "50%"
+          }}>{children}</div>
         </div>
-      </div>
-      <div className="col-md-3 bg-white p-0">
-        <svg className="ml-n1 w-100 h-100 large-screen-svg-primary" preserveAspectRatio="xMaxYMin meet">
-          <g transform="skewX(171.6)">
-            <rect x="0" y="0" height="100%" width="100%" />
-          </g>
-        </svg>
       </div>
     </div>
   );

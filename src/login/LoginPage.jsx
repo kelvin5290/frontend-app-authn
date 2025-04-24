@@ -154,7 +154,7 @@ const LoginPage = (props) => {
 
     // add query params to the payload
     const payload = {
-      email_or_username: formData.emailOrUsername,
+      email_or_username: formData.emailOrUsername.trim(),
       password: formData.password,
       ...queryParams,
     };
@@ -177,14 +177,14 @@ const LoginPage = (props) => {
   const { provider, skipHintedLogin } = getTpaProvider(tpaHint, providers, secondaryProviders);
 
   if (tpaHint) {
-    if (thirdPartyAuthApiStatus === PENDING_STATE) {
-      return <Skeleton height={36} />;
-    }
+    // if (thirdPartyAuthApiStatus === PENDING_STATE) {
+    //   return <Skeleton height={36} />;
+    // }
 
-    if (skipHintedLogin) {
-      window.location.href = getConfig().LMS_BASE_URL + provider.loginUrl;
-      return null;
-    }
+    // if (skipHintedLogin) {
+    //   window.location.href = getConfig().LMS_BASE_URL + provider.loginUrl;
+    //   return null;
+    // }
 
     if (provider) {
       return <EnterpriseSSO provider={provider} />;
@@ -249,7 +249,8 @@ const LoginPage = (props) => {
             id="sign-in"
             type="submit"
             variant="brand"
-            className="login-button-width"
+            className="mb-2 login-button-width"
+            style={{backgroundColor:"#38AA95",borderColor:"#38AA95"}}
             state={submitState}
             labels={{
               default: formatMessage(messages['sign.in.button']),
@@ -258,15 +259,18 @@ const LoginPage = (props) => {
             onClick={handleSubmit}
             onMouseDown={(event) => event.preventDefault()}
           />
+          <div className="mt-3 ">
           <Link
             id="forgot-password"
             name="forgot-password"
-            className="btn btn-link font-weight-500 text-body"
+            className="btn-link text-body"
+            style={{fontSize:" 0.9rem"}}
             to={updatePathWithQueryParams(RESET_PAGE)}
             onClick={trackForgotPasswordLinkClick}
           >
             {formatMessage(messages['forgot.password'])}
           </Link>
+          </div>
           <ThirdPartyAuth
             currentProvider={currentProvider}
             providers={providers}

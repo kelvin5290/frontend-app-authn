@@ -15,44 +15,23 @@ import { AuthLargeLayout, AuthMediumLayout, AuthSmallLayout } from './components
 const BaseContainer = ({ children, showWelcomeBanner, fullName }) => {
   const enableImageLayout = getConfig().ENABLE_IMAGE_LAYOUT;
 
-  if (enableImageLayout) {
-    return (
-      <div className="layout">
-        <MediaQuery maxWidth={breakpoints.extraSmall.maxWidth - 1}>
-          {showWelcomeBanner ? <AuthSmallLayout fullName={fullName} /> : <ImageExtraSmallLayout />}
-        </MediaQuery>
-        <MediaQuery minWidth={breakpoints.small.minWidth} maxWidth={breakpoints.small.maxWidth - 1}>
-          {showWelcomeBanner ? <AuthSmallLayout fullName={fullName} /> : <ImageSmallLayout />}
-        </MediaQuery>
-        <MediaQuery minWidth={breakpoints.medium.minWidth} maxWidth={breakpoints.large.maxWidth - 1}>
-          {showWelcomeBanner ? <AuthMediumLayout fullName={fullName} /> : <ImageMediumLayout />}
-        </MediaQuery>
-        <MediaQuery minWidth={breakpoints.extraLarge.minWidth}>
-          {showWelcomeBanner ? <AuthLargeLayout fullName={fullName} /> : <ImageLargeLayout />}
-        </MediaQuery>
-        <div className={classNames('content', { 'align-items-center mt-0': showWelcomeBanner })}>
-          {children}
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
-      <div className="col-md-12 extra-large-screen-top-stripe" />
-      <div className="layout">
+      
+      <div>
+      
         <MediaQuery maxWidth={breakpoints.small.maxWidth - 1}>
-          {showWelcomeBanner ? <AuthSmallLayout fullName={fullName} /> : <DefaultSmallLayout />}
+          {showWelcomeBanner ? <AuthSmallLayout fullName={fullName} /> : <DefaultSmallLayout >{children} </DefaultSmallLayout >}
         </MediaQuery>
         <MediaQuery minWidth={breakpoints.medium.minWidth} maxWidth={breakpoints.large.maxWidth - 1}>
-          {showWelcomeBanner ? <AuthMediumLayout fullName={fullName} /> : <DefaultMediumLayout />}
+          {showWelcomeBanner ? <AuthMediumLayout fullName={fullName} /> : <DefaultMediumLayout >{children}  </DefaultMediumLayout >}
         </MediaQuery>
         <MediaQuery minWidth={breakpoints.extraLarge.minWidth}>
-          {showWelcomeBanner ? <AuthLargeLayout fullName={fullName} /> : <DefaultLargeLayout />}
+          {showWelcomeBanner ? <AuthLargeLayout fullName={fullName} >{children}  </AuthLargeLayout>: <DefaultLargeLayout>{children} </DefaultLargeLayout>}
         </MediaQuery>
-        <div className={classNames('content', { 'align-items-center mt-0': showWelcomeBanner })}>
-          {children}
-        </div>
+        
+
+        
       </div>
     </>
   );

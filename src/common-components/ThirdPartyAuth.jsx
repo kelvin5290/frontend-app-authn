@@ -62,11 +62,11 @@ const ThirdPartyAuth = (props) => {
         </Hyperlink>
       )}
 
-      {thirdPartyAuthApiStatus === PENDING_STATE && isThirdPartyAuthActive ? (
+      {/* {thirdPartyAuthApiStatus === PENDING_STATE && isThirdPartyAuthActive ? (
         <div className="mt-4">
           <Skeleton className="tpa-skeleton" height={36} count={2} />
         </div>
-      ) : (
+      ) : ( */}
         <>
           {(isEnterpriseLoginDisabled && isInstitutionAuthActive) && (
             <RenderInstitutionButton
@@ -83,7 +83,7 @@ const ThirdPartyAuth = (props) => {
             </div>
           )}
         </>
-      )}
+      {/* )} */}
     </>
   );
 };

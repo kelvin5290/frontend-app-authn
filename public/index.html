@@ -10,17 +10,9 @@
               crossorigin="anonymous"
               referrerpolicy="no-referrer">
       </script>
-      <% if (process.env.OPTIMIZELY_URL) { %>
-        <script
-          src="<%= process.env.OPTIMIZELY_URL %>"
-        ></script>
-      <% } else if (process.env.OPTIMIZELY_PROJECT_ID) { %>
-        <script
-          src="<%= process.env.MARKETING_SITE_BASE_URL %>/optimizelyjs/<%= process.env.OPTIMIZELY_PROJECT_ID %>.js"
-        ></script>
-      <% } %>
+
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" style="background-color: #F6F6F4;"></div>
   </body>
 </html>

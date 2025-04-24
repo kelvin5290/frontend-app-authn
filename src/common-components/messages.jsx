@@ -15,7 +15,7 @@ const messages = defineMessages({
   },
   'logistration.register': {
     id: 'logistration.register',
-    defaultMessage: 'Register',
+    defaultMessage: 'SETUP',
     description: 'Text that appears on the tab to switch between login and register',
   },
   // enterprise sso strings
